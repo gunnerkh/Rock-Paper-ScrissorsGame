@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 public class GricoApp {
+    /*player list*/
     private static ArrayList<Player> _players = new ArrayList<Player>();
+     /*method for see score*/
     public static void ShowScore() {
         int count = 4;
         while (count > 0) {
@@ -16,7 +18,7 @@ public class GricoApp {
             count--;
         }
     }
-
+      /*initializing score value */
     public static void SetScore(int janken) {
         int score;
         int rank = 0;
@@ -28,10 +30,8 @@ public class GricoApp {
                 score = 6;
                 break;
         }
-        for (Player player : _players) {
-           /* if (player.getStage() > stage) {
-                stage = player.getStage();
-            }*/
+              /*calculating score*/
+        for (Player player : _players) {         
             if (player.getJanken() == janken) {
                 if(player.getScore()<25){
                 player.setScore(player.getScore() + score);
@@ -40,23 +40,17 @@ public class GricoApp {
                    player.setRank(rank);
                 }
                 }
-             /*   if (player.getScore() >= 25) {
-                    stage++;                         
-                    player.setStage(stage);
-                    break;
-
-                }*/
             }
         }
     }
-
+      /*setting names for each player */
     public static void SetPlayerName() {
         int i = 4;
         ArrayList<String> names = new ArrayList<String>();
-        names.add("Rufin");
         names.add("Kamil");
-        names.add("Resid");
-        names.add("Rail");
+        names.add("Nagamoto");
+        names.add("Fatima");
+        names.add("Kataoka");
         while (i > 0) {
             Player player = new Player();
             player.setName(names.get(i - 1));
@@ -64,8 +58,8 @@ public class GricoApp {
             i--;
         }
     }
-
-    public static void SetJanken() // el formalari teyin etme
+         /*identifying jankens */
+    public static void SetJanken() /
     {   String janken3 = "";
         Random random = new Random();
         if (_players.isEmpty()) {
@@ -80,10 +74,13 @@ public class GricoApp {
 
     public static void Test() {
        String janken3="";
-        SetJanken(); // oyuncunun adini ve secimini set edirik
+         /*setting Janken and players' name */
+        SetJanken(); 
         System.out.println("ジャン！ケン！ポン！OpenHands ");
-        int k = 0, m = 0; //butun jankenler eyni olanda
-        Player player1 = _players.get(0); // her bir oyuncunu goturub diger oyuncularla muqayise edirik
+         /*All jankens are same condition */
+        int k = 0, m = 0; 
+         /*comparing all jankens results */
+        Player player1 = _players.get(0); 
         int winJanken = player1.getJanken();
         int secondJanken = 0;
          switch(player1.getJanken()){
@@ -98,6 +95,7 @@ public class GricoApp {
                     break;
             }
         System.out.println("Player : " + player1.getName() + ":"+ janken3+":"+player1.getJanken());
+        
         for (int j = 1; j < _players.size(); j++) {
             Player player2 = _players.get(j);
             if (player1.getJanken() == player2.getJanken()) {
@@ -157,8 +155,7 @@ public class GricoApp {
                 
             }
           
-                k++;
-            
+                k++;         
                     
         }
         ShowScore();
